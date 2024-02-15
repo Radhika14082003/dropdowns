@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropdown Manipulation</title>
+<style type="text/css">
+    body {background-color: pink;}
+    
+      
+        input[type=text], input[type=password], select {
+            width: 200px;  
+        }
+        input[type=radio] {
+            display: inline-block;
+            margin-left: 45px;
+        }
+        input[type=checkbox] {
+            display: inline-block;
+            margin-right: 190px;
+        }  
+         
+        button {
+             background-color: plum;
+        
+            padding: 10px;
+            margin: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+<label for="sourceDropdown">Source :</label>
+<select id="sourceDropdown" >
+<option value="" disabled selected>Select an option...</option>
+  <option value="1">India</option>
+  <option value="2">Sri Lanka</option>
+  <option value="3">USA</option>
+  <option value="3">France</option>
+  <option value="3">Nepal</option>
+  <option value="3">Singapore</option>
+  <option value="3">Mexico</option>
+</select>
+<button onclick="moveSelectedItem()">Move One Option</button>
+<button onclick="moveOptions()">Move All Options</button>
+<button onclick="removeOptions()">Remove All Options</button>
+<button onclick="removeSelectedItem()">Remove One Option</button>
+<label for="destinationDropdown">Destination:</label>
+<select id="destinationDropdown"></select>
+
+
+<script>
+function moveSelectedItem() {
+  var sourceDropdown = document.getElementById("sourceDropdown");
+  var destinationDropdown = document.getElementById("destinationDropdown");
+  
+  var selectedIndex = sourceDropdown.selectedIndex;
+  var selectedOption = sourceDropdown.options[selectedIndex];
+  destinationDropdown.add(selectedOption);
+}
+function moveOptions() {
+            var sourceDropdown = document.getElementById("sourceDropdown");
+            var destinationDropdown = document.getElementById("destinationDropdown");
+
+           
+            for (var i = 0; i < sourceDropdown.options.length; i++) {
+                var option = sourceDropdown.options[i];
+              
+                destinationDropdown.appendChild(option.cloneNode(true));
+            }
+
+            
+            sourceDropdown.innerHTML = '';
+        }
+     function removeOptions() {
+            var sourceDropdown = document.getElementById("sourceDropdown");
+            var destinationDropdown = document.getElementById("destinationDropdown");
+
+           
+            for (var i = 0; i < destinationDropdown.options.length; i++) {
+                var option = destinationDropdown.options[i];
+              
+                sourceDropdown.appendChild(option.cloneNode(true));
+            }
+
+            
+            destinationDropdown.innerHTML = '';
+        }
+        function removeSelectedItem() {
+  var sourceDropdown = document.getElementById("sourceDropdown");
+  var destinationDropdown = document.getElementById("destinationDropdown");
+  
+  var selectedIndex = destinationDropdown.selectedIndex;
+  var selectedOption = destinationDropdown.options[selectedIndex];
+ sourceDropdown.remove(selectedOption);
+}
+
+
+</script>
+
+</body>
+</html>
